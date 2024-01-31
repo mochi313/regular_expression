@@ -24,6 +24,8 @@ def confirm(request):
             context["zip_code"] = ""
         if not re.match("^\d{3}-?\d{4}-?\d{4}$",context["tel"]):
             context["tel"] = ""
-        return render(request,"regex/index.html",{"context":context})
+        if context["age"] == "" or context["zip_code"] == "" or context["tel"] == "":
+            return render(request,"regex/index.html",{"context":context})
+        return render(request,"regex/test.html",{"context":context})
     # print(context)
     return render(request,"regex/index.html")
