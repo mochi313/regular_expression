@@ -8,22 +8,22 @@ def index(request):
 
 def confirm(request):
     if request.method == "POST":
-        name = request.get("name");
-        age = request.POST["age"];
-        zip_code = request.POST["zip_code"];
-        tel = request.POST["tel"];
-    # name = re.sub(' ','',name)
-    # if re.search('\D',age):
-    #     age = ""
-    # if re.search('^([0-9]|-)',zip_code):
-    #     zip_code = ""
-    # if re.search('^([0-9]|-)',tel):
-    #     tel = ""
-    context = {
-        "name":name,
-        "age":age,
-        "zip_code":zip_code,
-        "tel":tel
-    }
+        name = re.sub("\s","",request.POST.get("name"));
+        age = request.POST.get("age");
+        zip_code = request.POST.get("zip_code");
+        tel = request.POST.get("tel");
+        context = {
+            "name":name,
+            "age":age,
+            "zip_code":zip_code,
+            "tel":tel
+        }
+        if not re.match("^[0-9]+$",context["age"]):
+            context["age"] = ""
+        if not re.match("^\d{3}-?\d{4}$",context["zip_code"]):
+            context["zip_code"] = ""
+        if not re.match("^\d{3}-?\d{4}-?\d{4}$",context["tel"]):
+            context["tel"] = ""
+        return render(request,"regex/index.html",{"context":context})
     # print(context)
-    return render(request,"regex/index.html",context)
+    return render(request,"regex/index.html")

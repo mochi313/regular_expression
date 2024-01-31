@@ -6,41 +6,41 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{% url 'regex_app:confirm' %}">
+    <form action="{% url 'regex_app:confirm' %}" method="POST">
         {% csrf_token %}
         <p>
             <label for="name">Name:
-                <input type="text" name="name" id="name" value="{{name}}">
+                <input type="text" name="name" id="name" value="{{context.name}}">
             </label>
         </p>
         <p>
-            {% if age == ""%}
+            {% if context.age == ""%}
             Ageは1~3桁の半角数字のみで入力してください
             {% endif %}
         </p>
         <p>
             <label for="age">Age:
-                <input type="text" name="age" id="age" value="{{age}}">
+                <input type="text" name="age" id="age" value="{{context.age}}">
             </label>
         </p>
         <p>
-            {% if zip_code == ""%}
+            {% if context.zip_code == ""%}
             Zip_codeは全7桁の半角数字の半角数字を入力してください。(ハイフンはあってもなくてもok!)
             {% endif %}
         </p>
         <p>
             <label for="zip_code">Zip_code:
-                <input type="text" name="zip_code" id="zip_code" value="{{zip_code}}">
+                <input type="text" name="zip_code" id="zip_code" value="{{context.zip_code}}">
             </label>
         </p>
         <p>
-            {% if tell == ""%}
+            {% if context.tell == ""%}
             Cell_phoneは全7桁の半角数字の半角数字を入力してください。(ハイフンはあってもなくてもok!)
             {% endif %}
         </p>
         <p>
             <label for="tel">Cell_phone:
-                <input type="text" name="tel" id="tel" value="{{tel}}">
+                <input type="text" name="tel" id="tel" value="{{context.tel}}">
             </label>
         </p>
         <button type="submit">送信</button>
