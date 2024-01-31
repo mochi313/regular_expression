@@ -26,6 +26,6 @@ def confirm(request):
             context["tel"] = ""
         if context["age"] == "" or context["zip_code"] == "" or context["tel"] == "":
             return render(request,"regex/index.html",{"context":context})
-        return render(request,"regex/test.html",{"context":context})
+        return render(request,"regex/confirm.html",{"context":context})
     # print(context)
     return render(request,"regex/index.html")
